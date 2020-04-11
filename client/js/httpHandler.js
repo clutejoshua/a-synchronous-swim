@@ -4,7 +4,30 @@
 
   //
   // TODO: build the swim command fetcher here
-  //
+  // $.get('http://localhost:3001', (command) => SwimTeam.move(command));
+
+  let randomDirection = () => {
+    let possibleMovesArr = ['down', 'up', 'left', 'right'];
+    let randomDirection = possibleMovesArr[Math.floor(Math.random()*4)];
+    // SwimTeam.move(randomDirection)
+    return randomDirection
+  }
+
+  const swimFetch = (command) => {
+    $.ajax({
+      type:'GET',
+      url: serverUrl,
+      success: () => {
+        if (command) {
+          SwimTeam.move(command)
+        } else {
+          SwimTeam.move(randomDirection)
+        }
+      }
+    });
+  }
+
+  // setInterval(swimFetch, 1000)
 
   /////////////////////////////////////////////////////////////////////
   // The ajax file uplaoder is provided for your convenience!
@@ -17,7 +40,7 @@
     $.ajax({
       type: 'POST',
       data: formData,
-      url: 'FILL_ME_IN',
+      url: serverUrl,
       cache: false,
       contentType: false,
       processData: false,
