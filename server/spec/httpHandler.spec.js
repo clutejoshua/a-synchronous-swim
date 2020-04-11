@@ -22,13 +22,23 @@ describe('server responses', () => {
   });
 
   it('should respond to a GET request for a swim command', (done) => {
-    // write your test here
+  //   // write your test here
+  //   // $.get('http://localhost:3001', (command) => SwimTeam.move(command));
+
+    let {req, res} = server.mock('/', 'GET');
+    let possibleMovesArr = ['down', 'up', 'left', 'right'];
+
+    httpHandler.router(req, res);
+    expect(res._responseCode).to.equal(200);
+    expect(res._ended).to.equal(true);
+    // expect(res._data.toString()).to.contain(possibleMovesArr);
+
     done();
   });
 
   xit('should respond with 404 to a GET request for a missing background image', (done) => {
     httpHandler.backgroundImageFile = path.join('.', 'spec', 'missing.jpg');
-    let {req, res} = server.mock('FILL_ME_IN', 'GET');
+    let {req, res} = server.mock('/background.jpg', 'GET');
 
     httpHandler.router(req, res, () => {
       expect(res._responseCode).to.equal(404);

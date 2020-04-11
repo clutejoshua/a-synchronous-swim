@@ -5,7 +5,8 @@
   "scripts": {
     "start": "nodemon .",
     "server": "node .",
-    "test": "node_modules/jest/bin/jest.js spec"
+    "test": "node_modules/jest/bin/jest.js --watch spec",
+    "jest": "jest"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +17,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "jest": "^24.1.0"
+    "jest": "^24.1.0",
+    "nodemon": "^2.0.3"
   }
 }
