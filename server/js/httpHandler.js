@@ -14,18 +14,28 @@ module.exports.initialize = (queue) => {
 
 module.exports.router = (req, res, next = ()=>{}) => {
   console.log('Serving request type ' + req.method + ' for url ' + req.url);
-  res.writeHead(200, headers);
+
   // res.end('left'); res.end('right'); res.end('up'); res.end('down');
-  // write a random direction function
+
+  if (req.method === 'GET') {
+    res.writeHead(200, headers);
+  }
+
 
   res.end();
   next(); // invoke next() at the end of a request to help with testing!
 
 };
 
+// write a random direction function
 let randomDirection = () => {
   let possibleMovesArr = ['down', 'up', 'left', 'right'];
   let randomDirection = possibleMovesArr[Math.floor(Math.random()*4)];
   // SwimTeam.move(randomDirection)
   return randomDirection
 }
+
+// this.writeHead = (responseCode, headers) => {
+//   this._responseCode = responseCode;
+//   this._headers = headers;
+// };

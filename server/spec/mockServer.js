@@ -34,17 +34,20 @@ var response = function() {
 
   this.on = this.once = this.emit = ()=>{};
 
+  // GET REQUEST
   this.writeHead = (responseCode, headers) => {
     this._responseCode = responseCode;
     this._headers = headers;
   };
 
+  // POST REQUEST
   this.write = (data) => {
     if (data) {
       this._data = Buffer.concat([this._data, Buffer.from(data)]);
     }
   };
 
+  // ENDS THE FUNCTION
   this.end = (data) => {
     this._ended = true;
     if (data) {
